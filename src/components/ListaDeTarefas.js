@@ -8,7 +8,7 @@ import TaskAPI from './daoTask';
 
 let userId = null;
 
-function ListaDeTarefas() {
+function ListaDeProdutos() {
     //let userId = 'unkn'
 
     firebase.auth().onAuthStateChanged((user) => {
@@ -21,8 +21,8 @@ function ListaDeTarefas() {
         }
     })
 
-    const [tarefas, setTarefas] = useState([]);
-    const [novaTarefa, setNovaTarefa] = useState('');
+    const [produtos, setProdutos] = useState([]);
+    const [novoProduto, setNovoProduto] = useState('');
     const [mostrarFormulario, setMostrarFormulario] = useState(false);
 
     useEffect(() => {
@@ -30,64 +30,64 @@ function ListaDeTarefas() {
         const fetchTasks = async () => {
         try {
             const tasksFromAPI = await TaskAPI.readTasks(userId);
-            setTarefas(tasksFromAPI);
+            setProdutos(tasksFromAPI);
         } catch (error) {
-            console.error('Erro ao buscar tarefas:', error);
+            console.error('Erro ao buscar produtos:', error);
         }
         };
 
         fetchTasks();
-    }, [tarefas]);
+    }, [produtos]);
 
-    const adicionarTarefa = async () => {
+    const adicionarProduto = async () => {
         try {
-          const newTaskId = await TaskAPI.createTask({ "descricao": novaTarefa}, userId);
-          // Atualize a lista de tarefas após a adição
-          const updatedTasks = [...tarefas, { id: newTaskId, descricao: novaTarefa },userId];
-          setTarefas(updatedTasks);
-          setNovaTarefa('');
+          const newTaskId = await TaskAPI.createTask({ "descricao": novoProduto}, userId);
+          // Atualize a lista de produtos após a adição
+          const updatedTasks = [...produtos, { id: newTaskId, descricao: novoProduto },userId];
+          setProdutos(updatedTasks);
+          setNovoProduto('');
 
           setMostrarFormulario(false);
-          //setNewTaskTitle(''); // Limpa o campo de entrada após a adição da tarefa
+          //setNewTaskTitle(''); // Limpa o campo de entrada após a adição da produto
         } catch (error) {
-          console.error('Erro ao adicionar tarefa:', error);
+          console.error('Erro ao adicionar produto:', error);
         }
       };
 
-    const removerTarefa = async (taskId,userId) => {
+    const removerProduto = async (taskId,userId) => {
         try {
           await TaskAPI.deleteTask(taskId,userId);
-          // Atualize a lista de tarefas após a remoção
-          const updatedTasks = tarefas.filter(task => task.id !== taskId);
-          setTarefas(updatedTasks);
+          // Atualize a lista de produtos após a remoção
+          const updatedTasks = produtos.filter(task => task.id !== taskId);
+          setProdutos(updatedTasks);
         } catch (error) {
-          console.error('Erro ao excluir tarefa:', error);
+          console.error('Erro ao excluir produto:', error);
         }
       };
 
     return (
         <div className="lista-de-tarefas">
-            <h1>Tarefas Etec</h1>
+            <h1>Produtos Etec</h1>
             <Navbar />
             {mostrarFormulario && (
                 <div className="adicionar-tarefa">
                     <input
                         type="text"
-                        value={novaTarefa}
-                        onChange={(e) => setNovaTarefa(e.target.value)}
-                        placeholder="Digite uma nova tarefa"
+                        value={novoProduto}
+                        onChange={(e) => setNovoProduto(e.target.value)}
+                        placeholder="Digite um produto"
                     />
-                    <button onClick={adicionarTarefa}>Adicionar</button>
+                    
                 </div>
             )}
             {!mostrarFormulario && (
                 <button className="botao-flutuante" onClick={() => setMostrarFormulario(true)}>+</button>
             )}
             <ul>
-                {tarefas.map(task => (
+                {produtos.map(task => (
                     <li key={task.id} className="tarefa">
                         <div>{task.descricao}</div>
-                        <div className="remover-tarefa" onClick={() => removerTarefa(task.id,userId)}>Excluir</div>
+                        <div className="remover-tarefa" onClick={() => removerProduto(task.id,userId)}>Excluir</div>
                     </li>
                 ))}
             </ul>
@@ -96,4 +96,4 @@ function ListaDeTarefas() {
     );
 }
 
-export default ListaDeTarefas
+export default ListaDeProdutos

@@ -4,14 +4,14 @@ import 'firebase/compat/auth';
 
 
 const firebaseConfig = {
-  apiKey: "",
-  authDomain: "..com",
-  databaseURL: "https://-default-rtdb.firebaseio.com",
-  projectId: "",
-  storageBucket: ".appspot.com",
-  messagingSenderId: "",
-  appId: "1:429631871423:",
-  measurementId: "G-"
+  apiKey: "AIzaSyB7Mev47x4w4WfcR5wMvcLdMgrwKwb1P6M",
+  authDomain: "etec-e4e49.firebaseapp.com",
+  databaseURL: "https://etec-e4e49-default-rtdb.firebaseio.com",
+  projectId: "etec-e4e49",
+  storageBucket: "etec-e4e49.appspot.com",
+  messagingSenderId: "520864674547",
+  appId: "1:520864674547:web:67ab4d228a6f89de753d86",
+  measurementId: "G-20R8HN0FM2"
 }
 
 // Inicialize o Firebase

@@ -53,7 +53,7 @@ export const Login = () => {
 
   return (
     <div className='login-container'>
-      <h1>Etec AE Tarefas</h1>
+      <h1>Etec AE Produtos</h1>
       <img alt='logo da etec' src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjrV5DcEma8sEaQPLOOynwdVk9qKPF8LhbENMxEqrw0jAg9rX2KvOyTHK_sDsWqGVndnQyGDC2TU0FlLnmjuGbzvhRtnRP9sL7RRZfRfPYgzi8o2oRfscDokXE5dajgMWvJ7hDbzVHpRPI/s640/logo-etec.png' />
       <TextField
         sx={{width: "100%", marginY: 1}}
